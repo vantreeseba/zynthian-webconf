@@ -229,11 +229,12 @@ function refreshMidiMasterNoteCuiaPanel() {
 		var nclass = note_classes[i%12];
 		var nid = nclass + nscale;
 		var nname = note_names[i%12] + (nscale - 1);
+		var nlabel = nname + " (" + i + ")";
 		var ninfo;
 		if (note_cuia[i]) {
-			ninfo = "<span class='busy'>" + nname + "</span> " + note_cuia[i];
+			ninfo = "<span class='busy'>" + nlabel + "</span> " + note_cuia[i];
 		} else {
-			ninfo = "<span class='free'>" + nname + "</span>";
+			ninfo = "<span class='free'>" + nlabel + "</span>";
 		}
 		piano_html += "<li class='" + nclass +"' name='" + nname + "' id='note_" + nid + "' index='" + i + "'><span class='note_info'>" + ninfo + "</span></li>\n";
 	}
@@ -244,7 +245,7 @@ function refreshMidiMasterNoteCuiaPanel() {
 		var note = $(this).attr('name');
 		var parts = note_cuia[index].split(' ', 2);
 		$('input#CUIA_NUM').val(index);
-		$('input#CUIA_NOTE').val(note);
+		$('input#CUIA_NOTE').val(note + ' (' + index + ')');
 		$('select#CUIA_NAME').val(parts[0]);
 		if (parts.length>1) {
 			$('input#CUIA_PARAM').val(parts[1]);
